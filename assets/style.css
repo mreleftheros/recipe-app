@@ -14,3 +14,53 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
 }
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(orange, #ffdb98);
+  overflow: hidden;
+}
+.main__container {
+  width: 100%;
+  max-width: 40rem;
+  height: 90vh;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 15px #000;
+  padding: 1rem;
+}
+.main__container__form.active .main__container__form__icon {
+  display: inline-block;
+}
+.main__container__form {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem auto;
+  width: 80%;
+  text-align: center;
+  position: relative;
+}
+.main__container__form__input {
+  flex: 1;
+  text-align: center;
+  font-size: 2rem;
+  outline: none;
+  border: 0;
+  border-bottom: solid 1px;
+  padding: 0.5rem 0;
+  transition: padding 0.3s ease-out, border 0.3s ease-out;
+}
+.main__container__form__input:focus {
+  border-bottom: solid 3px;
+  padding: 1rem 0;
+}
+.main__container__form__icon {
+  display: none;
+  font-size: 2rem;
+  position: absolute;
+  left: 90%;
+}
