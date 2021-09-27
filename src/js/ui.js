@@ -1,20 +1,27 @@
 import recipe from "./recipe";
+import localStorage from "./localStorage";
 
 class UI {
   constructor() {
     this.searchForm = document.getElementById("searchForm");
     this.searchInput = document.getElementById("searchInput");
     this.recommendedList = document.getElementById("recommendedList");
+    this.recipesList = document.getElementById("recipesList");
   }
   init() {
-    this.searchInput.addEventListener("focus", this.toggleForm);
-    this.searchInput.addEventListener("blur", this.toggleForm);
+    this.searchInput.addEventListener("focus", e => this.toggleForm(e));
+    this.searchInput.addEventListener("blur", e => this.toggleForm(e));
     this.searchInput.addEventListener("input", e => recipe.find(e));
+    this.searchForm.addEventListener("submit", e => recipe.find(e));
+    this.recipesList.addEventListener("click", e => this.handleClick(e));
   }
   toggleForm(e) {
     if (e.type === "focus") {
       e.currentTarget.parentElement.classList.add("active");
       e.currentTarget.placeholder = "";
+
+      if (this.searchInput.value.length > 0)
+        this.recommendedList.classList.add("active");
     } 
     else if (e.type === "blur") {
       e.currentTarget.parentElement.classList.remove("active");
@@ -25,7 +32,7 @@ class UI {
     const fragment = new DocumentFragment();
     this.recommendedList.innerHTML = "";
 
-    if(meals.length === 0) {
+    if(!meals) { // check
       this.recommendedList.classList.remove("active");
       return;
     }
@@ -37,7 +44,7 @@ class UI {
       liElement.classList.add("main__container__form__recommended-list__item");
       liElement.textContent = meal.strMeal;
 
-      liElement.addEventListener("click", e => recipe.find(e))
+      liElement.addEventListener("click", e => recipe.find(e));
 
       fragment.appendChild(liElement);
     })
@@ -49,6 +56,44 @@ class UI {
     this.recommendedList.classList.remove("active");
 
     this.searchForm.reset();
+  }
+  updateRecipesList(meals) {
+    this.recipesList.innerHTML = "";
+    this.recipesList.classList.add("active");
+    this.resetSearchForm();
+
+    const fragment = new DocumentFragment();
+
+    meals.forEach(meal => {
+      // create item
+      const liElement = document.createElement("li");
+      liElement.classList.add("main__container__recipes-list__item");
+      liElement.setAttribute("data-id", meal.idMeal);
+      
+      let html = `
+        <div class="main__container__recipes-list__item__header">
+          <img class="main__container__recipes-list__item__header__img" src=${meal.strMealThumb}>
+        </div>
+        <div class="main__container__recipes-list__item__body">
+          <h2 class="main__container__recipes-list__item__body__title">${meal.strMeal}</h2>
+          <span class="main__container__recipes-list__item__body__icon">&#x2661;</span>
+        </div>
+      `;
+
+      liElement.innerHTML = html;
+
+      fragment.appendChild(liElement);
+    })
+
+    this.recipesList.appendChild(fragment);
+  }
+  handleClick(e) {
+    if (e.target.tagName === "SPAN" && e.target.className.includes("icon")) {
+      e.stopPropagation();
+
+      const id = e.target.parentElement.parentElement.getAttribute("data-id");
+      return localStorage.saveRecipe(id);
+    }
   }
 }
 

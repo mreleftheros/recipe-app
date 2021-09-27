@@ -6,11 +6,11 @@ class Recipe {
   }
   async find(e) {
     if (e.target.value === "") {  // check
-      ui.updateRecommendedList([]);
-      return;
+      return ui.resetSearchForm();
     } 
     
-    if (e.target === ui.searchInput) {
+    // check if event type is input event
+    if (e.type === "input") {
       const url = this.base + "search.php?s=" + e.target.value;
       const res = await fetch(url);
       const data = await res.json();
@@ -18,11 +18,23 @@ class Recipe {
       return ui.updateRecommendedList(data.meals);
     }
 
+    // check if event type is form submit event
+    if (e.type === "submit") {
+      e.preventDefault();
+
+      const url = this.base + "search.php?s=" + e.currentTarget.searchInput.value;
+      const res = await fetch(url);
+      const data = await res.json();
+      
+      return ui.updateRecipesList(data.meals);
+    }
+
+    // else e.target is the li element in recommended list which was clicked
     const url = this.base + "search.php?s=" + e.currentTarget.innerText;
     const res = await fetch(url);
     const data = await res.json();
-
-    console.log(data.meals);
+    
+    return ui.updateRecipesList(data.meals);
   }
 }
 
