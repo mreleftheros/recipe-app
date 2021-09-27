@@ -67,10 +67,10 @@ body {
   position: absolute;
   left: 90%;
 }
-.main__container__form__recommend-list.active {
+.main__container__form__recommended-list.active {
   display: block;
 }
-.main__container__form__recommend-list {
+.main__container__form__recommended-list {
   position: absolute;
   display: none;
   list-style: none;
@@ -84,12 +84,12 @@ body {
   overflow: auto;
   background: rgba(0, 0, 0, 0.1);
 }
-.main__container__form__recommend-list__item {
+.main__container__form__recommended-list__item {
   font-size: 1.5rem;
   padding: 1rem 0;
   cursor: pointer;
   text-align: center;
 }
-.main__container__form__recommend-list__item:hover {
+.main__container__form__recommended-list__item:hover {
   background: rgba(0, 0, 0, 0.3);
 }

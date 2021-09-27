@@ -6,16 +6,23 @@ class Recipe {
   }
   async find(e) {
     if (e.target.value === "") {  // check
-      ui.updateRecommendList([]);
+      ui.updateRecommendedList([]);
       return;
     } 
+    
+    if (e.target === ui.searchInput) {
+      const url = this.base + "search.php?s=" + e.target.value;
+      const res = await fetch(url);
+      const data = await res.json();
 
-    const url = this.base + "search.php?s=" + e.target.value;
+      return ui.updateRecommendedList(data.meals);
+    }
 
+    const url = this.base + "search.php?s=" + e.currentTarget.innerText;
     const res = await fetch(url);
     const data = await res.json();
 
-    ui.updateRecommendList(data.meals);
+    console.log(data.meals);
   }
 }
 
