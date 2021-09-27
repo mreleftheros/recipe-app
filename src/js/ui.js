@@ -71,6 +71,7 @@ class UI {
       liElement.setAttribute("data-id", meal.idMeal);
 
       let iconText = localStorage.checkRecipe(meal.idMeal) ? "&#x1F499;" : "&#x2661;";
+      let classText = localStorage.checkRecipe(meal.idMeal) ? "main__container__recipes-list__item__body__icon active" : "main__container__recipes-list__item__body__icon";
       
       let html = `
         <div class="main__container__recipes-list__item__header">
@@ -78,7 +79,7 @@ class UI {
         </div>
         <div class="main__container__recipes-list__item__body">
           <h2 class="main__container__recipes-list__item__body__title">${meal.strMeal}</h2>
-          <span class="main__container__recipes-list__item__body__icon">${iconText}</span>
+          <span class=${classText}>${iconText}</span>
         </div>
       `;
 
@@ -94,6 +95,19 @@ class UI {
       e.stopPropagation();
 
       const id = e.target.parentElement.parentElement.getAttribute("data-id");
+
+      this.toggleIcon(e, id);
+    }
+  }
+  toggleIcon(e, id) {
+    if (e.target.classList.contains("active")) {
+      e.target.classList.remove("active");
+      e.target.innerText = "&#x2661;";
+      return localStorage.deleteRecipe(id);
+    } 
+    else if (!e.target.classList.contains("active")) {
+      e.target.classList.add("active");
+      e.target.innerText = "&#x1F499;";
       return localStorage.saveRecipe(id);
     }
   }
