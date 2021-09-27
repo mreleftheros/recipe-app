@@ -33,18 +33,20 @@ body {
   box-shadow: 0px 0px 15px #000;
   padding: 1rem;
 }
-.main__container__form.active .main__container__form__icon {
-  display: inline-block;
-}
 .main__container__form {
-  display: flex;
-  align-items: center;
   margin: 0.5rem auto;
   width: 80%;
   text-align: center;
-  position: relative;
 }
-.main__container__form__input {
+.main__container__form__form-control.active .main__container__form__form-control__icon {
+  display: inline-block;
+}
+.main__container__form__form-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.main__container__form__form-control__input {
   flex: 1;
   text-align: center;
   font-size: 2rem;
@@ -54,11 +56,11 @@ body {
   padding: 0.5rem 0;
   transition: padding 0.3s ease-out, border 0.3s ease-out;
 }
-.main__container__form__input:focus {
+.main__container__form__form-control__input:focus {
   border-bottom: solid 3px;
   padding: 1rem 0;
 }
-.main__container__form__icon {
+.main__container__form__form-control__icon {
   display: none;
   font-size: 2rem;
   position: absolute;
