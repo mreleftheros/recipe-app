@@ -21,11 +21,12 @@
 
     // Search Form
     &__form {
+      position: relative;
       margin: .5rem auto;
       width: 80%;
       text-align: center;
       
-      &__form-control.active &__form-control{
+      &__form-control.active &__form-control {
         &__icon {
           display: inline-block;
         }
@@ -57,6 +58,36 @@
           font-size: 2rem;
           position: absolute;
           left: 90%;
+        }
+      }
+
+      &__recommend-list.active {
+        display: block;
+      }
+
+      &__recommend-list {
+        position: absolute;
+        display: none;
+        list-style: none;
+        z-index: 1;
+        padding: .5rem 0;
+        border-radius: .5rem;
+        top: 105%;
+        left: 0;
+        right: 0;
+        max-height: 20rem;
+        overflow: auto;
+        background: rgba(0, 0, 0, .1);
+
+        &__item {
+          font-size: 1.5rem;
+          padding: 1rem 0;
+          cursor: pointer;
+          text-align: center;
+
+          &:hover {
+            background: rgba(0, 0, 0, .3);
+          }
         }
       }
     }

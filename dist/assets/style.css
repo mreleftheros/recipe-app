@@ -34,6 +34,7 @@ body {
   padding: 1rem;
 }
 .main__container__form {
+  position: relative;
   margin: 0.5rem auto;
   width: 80%;
   text-align: center;
@@ -65,4 +66,30 @@ body {
   font-size: 2rem;
   position: absolute;
   left: 90%;
+}
+.main__container__form__recommend-list.active {
+  display: block;
+}
+.main__container__form__recommend-list {
+  position: absolute;
+  display: none;
+  list-style: none;
+  z-index: 1;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  top: 105%;
+  left: 0;
+  right: 0;
+  max-height: 20rem;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.1);
+}
+.main__container__form__recommend-list__item {
+  font-size: 1.5rem;
+  padding: 1rem 0;
+  cursor: pointer;
+  text-align: center;
+}
+.main__container__form__recommend-list__item:hover {
+  background: rgba(0, 0, 0, 0.3);
 }

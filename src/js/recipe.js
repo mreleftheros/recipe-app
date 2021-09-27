@@ -5,14 +5,17 @@ class Recipe {
     this.base = "https://www.themealdb.com/api/json/v1/1/";
   }
   async find(e) {
-    if (e.target.value === "") return; // check
+    if (e.target.value === "") {  // check
+      ui.updateRecommendList([]);
+      return;
+    } 
 
     const url = this.base + "search.php?s=" + e.target.value;
 
     const res = await fetch(url);
     const data = await res.json();
 
-    console.log(data.meals)
+    ui.updateRecommendList(data.meals);
   }
 }
 
