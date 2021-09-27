@@ -2,6 +2,9 @@ class LocalStorage {
   constructor() {
 
   }
+  checkRecipe(id) {
+    return this.getRecipes().filter(recipe => recipe.id === id.toString()).length > 0;
+  }
   getRecipes = () => {
     return JSON.parse(localStorage.getItem("recipes")) || [];
   }
