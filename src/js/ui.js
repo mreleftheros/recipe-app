@@ -1,3 +1,5 @@
+import recipe from "./recipe";
+
 class UI {
   constructor() {
     this.searchForm = document.getElementById("searchForm");
@@ -6,6 +8,7 @@ class UI {
   init() {
     this.searchInput.addEventListener("focus", this.toggleForm);
     this.searchInput.addEventListener("blur", this.toggleForm);
+    this.searchInput.addEventListener("input", e => recipe.find(e));
   }
   toggleForm(e) {
     if (e.type === "focus") {
@@ -19,6 +22,4 @@ class UI {
   }
 }
 
-const ui = new UI();
-
-export default ui;
+export default new UI();
