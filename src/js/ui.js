@@ -69,6 +69,8 @@ class UI {
       const liElement = document.createElement("li");
       liElement.classList.add("main__container__recipes-list__item");
       liElement.setAttribute("data-id", meal.idMeal);
+
+      let iconText = localStorage.checkRecipe(meal.idMeal) ? "&#x1F499;" : "&#x2661;";
       
       let html = `
         <div class="main__container__recipes-list__item__header">
@@ -76,7 +78,7 @@ class UI {
         </div>
         <div class="main__container__recipes-list__item__body">
           <h2 class="main__container__recipes-list__item__body__title">${meal.strMeal}</h2>
-          <span class="main__container__recipes-list__item__body__icon">&#x2661;</span>
+          <span class="main__container__recipes-list__item__body__icon">${iconText}</span>
         </div>
       `;
 
