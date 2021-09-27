@@ -9,18 +9,20 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <!-- &#x2661; -->
-  
+  <!-- &#x1F499; -->
   <main class="main">
     <section class="main__container">
       <!-- Search Form -->
       <form class="main__container__form" id="searchForm" autocomplete="off">
         <div class="main__container__form__form-control">
-          <input type="text" class="main__container__form__form-control__input" id="searchInput" name="search" placeholder="Search for a recipe..." autofocus>
+          <input type="text" class="main__container__form__form-control__input" id="searchInput" name="searchInput" placeholder="Search for a recipe...">
           <span class="main__container__form__form-control__icon">&#128270;</span>
         </div>
         <ul class="main__container__form__recommended-list" id="recommendedList"></ul>
       </form>
+
+      <!-- Recipes -->
+      <ul class="main__container__recipes-list" id="recipesList"></ul>
     </section>
   </main>
 
