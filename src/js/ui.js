@@ -213,10 +213,16 @@ class UI {
   }
   deleteFromFavorites(e) {
     const id = e.target.parentElement.getAttribute("data-id");
-    const favorite = document.querySelector(`[data-id="${id}"]`);
+    const favorite = this.favoritesList.querySelector(`[data-id="${id}"]`);
 
     localStorage.deleteRecipe(id);
     favorite.remove();
+
+    const recipe = this.recipesList.querySelector(`[data-id="${id}"]`) || null;
+    if (recipe) {
+      recipe.lastElementChild.lastElementChild.classList.remove("active");
+      recipe.lastElementChild.lastElementChild.classList.innerText = "&#x1F90D;";
+    }
   }
 }
 
