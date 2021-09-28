@@ -11,8 +11,14 @@ class LocalStorage {
   saveRecipe(id) {
     const recipes = this.getRecipes();
 
-    recipes.push({id});
-    localStorage.setItem("recipes", JSON.stringify(recipes));
+    let index = recipes.findIndex(recipe => {
+      recipe.id === id;
+    });
+
+    if (index === -1) {
+      recipes.push({id});
+      localStorage.setItem("recipes", JSON.stringify(recipes));
+    }
   }
   deleteRecipe(id) {
     const recipes = this.getRecipes();

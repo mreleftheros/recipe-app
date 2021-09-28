@@ -55,6 +55,7 @@ class UI {
     this.recommendedList.innerHTML = "";
     this.recommendedList.classList.remove("active");
 
+    this.searchInput.blur();
     this.searchForm.reset();
   }
   updateRecipesList(meals) {
@@ -70,7 +71,7 @@ class UI {
       liElement.classList.add("main__container__recipes-list__item");
       liElement.setAttribute("data-id", meal.idMeal);
 
-      let iconText = localStorage.checkRecipe(meal.idMeal) ? "&#x1F499;" : "&#x2661;";
+      let iconText = localStorage.checkRecipe(meal.idMeal) ? "&#x1F499;" : "&#x1F90D;";
       let classText = localStorage.checkRecipe(meal.idMeal) ? "main__container__recipes-list__item__body__icon active" : "main__container__recipes-list__item__body__icon";
       
       let html = `
@@ -79,7 +80,7 @@ class UI {
         </div>
         <div class="main__container__recipes-list__item__body">
           <h2 class="main__container__recipes-list__item__body__title">${meal.strMeal}</h2>
-          <span class=${classText}>${iconText}</span>
+          <button type="button" class=${classText}>${iconText}</button>
         </div>
       `;
 
@@ -91,23 +92,26 @@ class UI {
     this.recipesList.appendChild(fragment);
   }
   handleClick(e) {
-    if (e.target.tagName === "SPAN" && e.target.className.includes("icon")) {
+    if (e.target.tagName === "BUTTON" && e.target.className.includes("icon")) {
       e.stopPropagation();
 
       const id = e.target.parentElement.parentElement.getAttribute("data-id");
 
       this.toggleIcon(e, id);
     }
+    else if (e.target.tagName === "LI") {
+      console.log("hey")
+    }
   }
   toggleIcon(e, id) {
     if (e.target.classList.contains("active")) {
       e.target.classList.remove("active");
-      e.target.innerText = "&#x2661;";
+      e.target.innerHTML = "&#x1F90D;";
       return localStorage.deleteRecipe(id);
     } 
     else if (!e.target.classList.contains("active")) {
       e.target.classList.add("active");
-      e.target.innerText = "&#x1F499;";
+      e.target.innerHTML = "&#x1F499";
       return localStorage.saveRecipe(id);
     }
   }

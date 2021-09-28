@@ -118,6 +118,7 @@ body {
 }
 .main__container__recipes-list__item__header {
   flex: 4;
+  pointer-events: none;
 }
 .main__container__recipes-list__item__header__img {
   display: block;
@@ -129,6 +130,7 @@ body {
   align-items: center;
   justify-content: center;
   flex: 1;
+  pointer-events: none;
 }
 .main__container__recipes-list__item__body__title {
   font-size: 2rem;
@@ -138,14 +140,18 @@ body {
 }
 .main__container__recipes-list__item__body__icon {
   position: absolute;
+  pointer-events: all;
   top: 20%;
   left: 80%;
   transform: translate(-20%, -80%);
   font-weight: bold;
   display: inline-block;
   font-size: 5rem;
+  padding: 0.5rem;
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  color: teal;
+  text-shadow: 0 0 1px #000;
   box-shadow: 0 0 5px #000;
   border-radius: 50%;
 }
