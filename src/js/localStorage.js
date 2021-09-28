@@ -8,7 +8,7 @@ class LocalStorage {
   getRecipes = () => {
     return JSON.parse(localStorage.getItem("recipes")) || [];
   }
-  saveRecipe(id) {
+  saveRecipe(id, imgSrc) {
     const recipes = this.getRecipes();
 
     let index = recipes.findIndex(recipe => {
@@ -16,7 +16,7 @@ class LocalStorage {
     });
 
     if (index === -1) {
-      recipes.push({id});
+      recipes.push({id, imgSrc});
       localStorage.setItem("recipes", JSON.stringify(recipes));
     }
   }

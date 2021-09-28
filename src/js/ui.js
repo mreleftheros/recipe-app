@@ -7,6 +7,7 @@ class UI {
     this.searchInput = document.getElementById("searchInput");
     this.recommendedList = document.getElementById("recommendedList");
     this.recipesList = document.getElementById("recipesList");
+    this.favoritesList = document.getElementById("favoritesList");
   }
   init() {
     this.searchInput.addEventListener("focus", e => this.toggleForm(e));
@@ -96,14 +97,15 @@ class UI {
       e.stopPropagation();
 
       const id = e.target.parentElement.parentElement.getAttribute("data-id");
+      const imgSrc = e.target.parentElement.parentElement.firstElementChild.firstElementChild.src;
 
-      this.toggleIcon(e, id);
+      this.toggleIcon(e, id, imgSrc);
     }
     else if (e.target.tagName === "LI") {
       console.log("hey")
     }
   }
-  toggleIcon(e, id) {
+  toggleIcon(e, id, imgSrc) {
     if (e.target.classList.contains("active")) {
       e.target.classList.remove("active");
       e.target.innerHTML = "&#x1F90D;";
@@ -112,7 +114,7 @@ class UI {
     else if (!e.target.classList.contains("active")) {
       e.target.classList.add("active");
       e.target.innerHTML = "&#x1F499";
-      return localStorage.saveRecipe(id);
+      return localStorage.saveRecipe(id, imgSrc);
     }
   }
 }
