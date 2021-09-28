@@ -63,12 +63,15 @@
       }
 
       &__recommended-list.active {
-        display: block;
+        opacity: 1;
+        pointer-events: all;
       }
 
       &__recommended-list {
         position: absolute;
-        display: none;
+        display: block;
+        opacity: 0;
+        pointer-events: none;
         list-style: none;
         z-index: 1;
         padding: .5rem 0;
@@ -181,6 +184,12 @@
         height: 40rem;
         margin: 1rem 0;
         box-shadow: 3px 3px 5px #000;
+        cursor: pointer;
+        transition: transform .3s linear;
+
+        &:hover {
+          transform: scale(.95);
+        }
 
         &__header {
           flex: 4;

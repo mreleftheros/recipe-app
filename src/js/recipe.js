@@ -30,11 +30,13 @@ class Recipe {
     }
 
     // else e.target is the li element in recommended list which was clicked
-    const url = this.base + "search.php?s=" + e.currentTarget.innerText;
-    const res = await fetch(url);
-    const data = await res.json();
-    
-    return ui.updateRecipesList(data.meals);
+    if (e.target.tagName === "LI") {
+      const url = this.base + "search.php?s=" + e.target.innerText;
+      const res = await fetch(url);
+      const data = await res.json();
+
+      return ui.updateRecipesList(data.meals);
+    }
   }
 }
 

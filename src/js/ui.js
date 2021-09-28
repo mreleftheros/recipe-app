@@ -14,6 +14,7 @@ class UI {
     this.searchInput.addEventListener("blur", e => this.toggleForm(e));
     this.searchInput.addEventListener("input", e => recipe.find(e));
     this.searchForm.addEventListener("submit", e => recipe.find(e));
+    this.recommendedList.addEventListener("click", e => recipe.find(e));
     this.recipesList.addEventListener("click", e => this.handleRecipeClick(e));
   }
   toggleForm(e) {
@@ -47,8 +48,6 @@ class UI {
       liElement.classList.add("main__container__form__recommended-list__item");
       liElement.textContent = meal.strMeal;
 
-      liElement.addEventListener("click", e => recipe.find(e));
-
       fragment.appendChild(liElement);
     })
 
@@ -58,7 +57,7 @@ class UI {
     this.recommendedList.innerHTML = "";
     this.recommendedList.classList.remove("active");
 
-    this.searchInput.blur();
+    // this.searchInput.blur();
     this.searchForm.reset();
   }
   updateRecipesList(meals) {
