@@ -202,8 +202,15 @@ class UI {
       return recipe.search(e);
     }
     else if (e.target.tagName === "SPAN") {
-      console.log("span")
+      return this.deleteFromFavorites(e);
     }
+  }
+  deleteFromFavorites(e) {
+    const id = e.target.parentElement.getAttribute("data-id");
+    const favorite = document.querySelector(`[data-id="${id}"]`);
+
+    localStorage.deleteRecipe(id);
+    favorite.remove();
   }
 }
 
