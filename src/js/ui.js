@@ -27,6 +27,8 @@ class UI {
     else if (e.type === "blur") {
       e.currentTarget.parentElement.classList.remove("active");
       e.currentTarget.placeholder = "Search for a recipe...";
+
+      // this.recommendedList.classList.remove("active");
     }
   }
   updateRecommendedList(meals) {
@@ -81,7 +83,7 @@ class UI {
         </div>
         <div class="main__container__recipes-list__item__body">
           <h2 class="main__container__recipes-list__item__body__title">${meal.strMeal}</h2>
-          <button type="button" class=${classText}>${iconText}</button>
+          <button type="button" class="${classText}">${iconText}</button>
         </div>
       `;
 
