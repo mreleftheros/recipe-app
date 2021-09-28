@@ -18,6 +18,7 @@ class UI {
     this.searchForm.addEventListener("submit", e => recipe.search(e));
     this.recommendedList.addEventListener("click", e => recipe.search(e));
     this.recipesList.addEventListener("click", e => this.handleRecipeClick(e));
+    this.favoritesList.addEventListener("click", e => this.handleFavoritesClick(e));
   }
   toggleForm(e) {
     if (e.type === "focus") {
@@ -193,6 +194,16 @@ class UI {
   closePopup() {
     this.popupContainer = document.getElementById("popupContainer");
     this.popupContainer.remove();
+  }
+  handleFavoritesClick(e) {
+    if (e.target.tagName === "LI") return; // check
+
+    if (e.target.tagName === "IMG") {
+      return recipe.search(e);
+    }
+    else if (e.target.tagName === "SPAN") {
+      console.log("span")
+    }
   }
 }
 
