@@ -15,6 +15,80 @@ body {
   min-height: 100vh;
 }
 
+.popup-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100vw;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+.popup-container__popup {
+  position: relative;
+  width: 100%;
+  padding: 0.5rem;
+  max-width: 40rem;
+  overflow: auto;
+  background: #fff;
+}
+.popup-container__popup__figure {
+  width: 100%;
+}
+.popup-container__popup__figure__img {
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
+  margin: 1rem 0;
+}
+.popup-container__popup__figure__title {
+  font-size: 3rem;
+  text-align: center;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+}
+.popup-container__popup__ingredients__title {
+  font-size: 3rem;
+  text-align: center;
+  text-decoration: underline;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+}
+.popup-container__popup__ingredients__list {
+  list-style: disc;
+  list-style-position: inside;
+  padding: 0.5rem;
+}
+.popup-container__popup__ingredients__list__item {
+  font-size: 1.5rem;
+  padding: 0.5rem 0;
+  letter-spacing: 0.1rem;
+}
+.popup-container__popup__instructions__text {
+  text-align: justify;
+  font-size: 2rem;
+  line-height: 1.5;
+}
+.popup-container__popup__instructions__text::first-letter {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.popup-container__popup__close {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 90%;
+  color: red;
+  font-size: 2rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 .main {
   display: flex;
   justify-content: center;
@@ -101,7 +175,7 @@ body {
 .main__container__favorites {
   width: 100%;
   height: 23vh;
-  overflow: scroll;
+  overflow: auto;
 }
 .main__container__favorites__title {
   text-align: center;
@@ -161,7 +235,7 @@ body {
   max-height: 63vh;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  overflow: scroll;
+  overflow: auto;
 }
 .main__container__recipes-list__item {
   position: relative;
