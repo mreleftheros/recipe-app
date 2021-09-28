@@ -8,6 +8,8 @@ class UI {
     this.recommendedList = document.getElementById("recommendedList");
     this.recipesList = document.getElementById("recipesList");
     this.favoritesList = document.getElementById("favoritesList");
+    this.popupContainer;
+    this.popupCloseBtn;
   }
   init() {
     this.searchInput.addEventListener("focus", e => this.toggleForm(e));
@@ -143,7 +145,54 @@ class UI {
     this.favoritesList.appendChild(fragment);
   }
   createPopup(meal) {
-    console.log(meal)
+    const popupContainer = document.createElement("div");
+    popupContainer.classList.add("popup-container");
+    popupContainer.id = "popupContainer";
+
+    const popupElement= document.createElement("div");
+    popupElement.classList.add("popup-container__popup"); 
+
+    let ingredientsListHtml = ""; 
+
+    for (let i = 1; i <= 20; i++) {
+      if (!meal[`strIngredient${i}`]) continue;
+
+      let html = `
+        <li class="popup-container__popup__ingredients__list__item">
+          ${meal[`strMeasure${i}`]} ${meal[`strIngredient${i}`]}
+        </li>
+      `;
+
+      ingredientsListHtml += html;
+    }
+
+    let html = `
+      <figure class="popup-container__popup__figure">
+        <figcaption class="popup-container__popup__figure__title">${meal.strMeal}</figcaption>
+        <img class="popup-container__popup__figure__img" src=${meal.strMealThumb}>
+      </figure>
+      <div class="popup-container__popup__ingredients">
+        <h3 class="popup-container__popup__ingredients__title">Ingredients</h3>
+        <ul class="popup-container__popup__ingredients__list">${ingredientsListHtml}</ul>
+      </div>
+      <div class="popup-container__popup__instructions">
+        <p class="popup-container__popup__instructions__text">${meal.strInstructions}</p>
+      </div>
+      <button type="button" id="popupCloseBtn" class="popup-container__popup__close">X</button>
+    `;
+
+    popupElement.innerHTML = html;
+
+    popupContainer.appendChild(popupElement);
+
+    document.body.appendChild(popupContainer);
+    
+    this.popupCloseBtn = document.getElementById("popupCloseBtn");
+    this.popupCloseBtn.addEventListener("click", this.closePopup);
+  }
+  closePopup() {
+    this.popupContainer = document.getElementById("popupContainer");
+    this.popupContainer.remove();
   }
 }
 
