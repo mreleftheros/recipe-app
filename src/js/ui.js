@@ -221,7 +221,7 @@ class UI {
     const recipe = this.recipesList.querySelector(`[data-id="${id}"]`) || null;
     if (recipe) {
       recipe.lastElementChild.lastElementChild.classList.remove("active");
-      recipe.lastElementChild.lastElementChild.innerText = "&#x1F90D;";
+      recipe.lastElementChild.lastElementChild.innerHTML = "&#x1F90D;";
     }
   }
 }
