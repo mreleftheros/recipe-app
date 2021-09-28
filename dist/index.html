@@ -11,7 +11,6 @@
 <body>
   <main class="main">
     <section class="main__container">
-
       <!-- Search Form -->
       <form class="main__container__form" id="searchForm" autocomplete="off">
         <div class="main__container__form__form-control">
@@ -20,8 +19,14 @@
         </div>
         <ul class="main__container__form__recommended-list" id="recommendedList"></ul>
       </form>
-      <ul class="main__container__favorites-list" id="favoritesList"></ul>
-      <!-- Recipes -->
+      
+      <!-- Favorites List -->
+      <div class="main__container__favorites">
+        <h2 class="main__container__favorites__title">My Favorites</h2>
+        <ul class="main__container__favorites__favorites-list" id="favoritesList"></ul>
+      </div>
+
+      <!-- Recipes List -->
       <ul class="main__container__recipes-list" id="recipesList"></ul>
     </section>
   </main>

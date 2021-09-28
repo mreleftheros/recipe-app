@@ -14,7 +14,7 @@ class UI {
     this.searchInput.addEventListener("blur", e => this.toggleForm(e));
     this.searchInput.addEventListener("input", e => recipe.find(e));
     this.searchForm.addEventListener("submit", e => recipe.find(e));
-    this.recipesList.addEventListener("click", e => this.handleClick(e));
+    this.recipesList.addEventListener("click", e => this.handleRecipeClick(e));
   }
   toggleForm(e) {
     if (e.type === "focus") {
@@ -92,7 +92,7 @@ class UI {
 
     this.recipesList.appendChild(fragment);
   }
-  handleClick(e) {
+  handleRecipeClick(e) {
     if (e.target.tagName === "BUTTON" && e.target.className.includes("icon")) {
       e.stopPropagation();
 
@@ -116,6 +116,30 @@ class UI {
       e.target.innerHTML = "&#x1F499";
       return localStorage.saveRecipe(id, imgSrc);
     }
+  }
+  updateFavoritesList() {
+    const recipes = localStorage.getRecipes();
+    const fragment = new DocumentFragment();
+
+    recipes.forEach(recipe => {
+      const liElement = document.createElement("li");
+      liElement.className = "main__container__favorites__favorites-list__item";
+      liElement.setAttribute("data-id", recipe.id);
+  
+      const imgElement = new Image();
+      imgElement.className = "main__container__favorites__favorites-list__item__img";
+      imgElement.src = recipe.imgSrc; 
+
+      const spanElement = document.createElement("span");
+      spanElement.className = "main__container__favorites__favorites-list__item__delete";
+      spanElement.textContent = "X";
+
+      liElement.appendChild(imgElement);
+      liElement.appendChild(spanElement);
+      fragment.appendChild(liElement);
+    })
+
+    this.favoritesList.appendChild(fragment);
   }
 }
 
