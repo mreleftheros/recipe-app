@@ -113,15 +113,21 @@ class UI {
     if (e.target.classList.contains("active")) {
       e.target.classList.remove("active");
       e.target.innerHTML = "&#x1F90D;";
-      return localStorage.deleteRecipe(id);
+
+      localStorage.deleteRecipe(id);
+      return this.updateFavoritesList();
     } 
     else if (!e.target.classList.contains("active")) {
       e.target.classList.add("active");
       e.target.innerHTML = "&#x1F499";
-      return localStorage.saveRecipe(id, imgSrc);
+
+      localStorage.saveRecipe(id, imgSrc);
+      return this.updateFavoritesList();
     }
   }
   updateFavoritesList() {
+    this.favoritesList.innerHTML = "";
+
     const recipes = localStorage.getRecipes();
     const fragment = new DocumentFragment();
 
