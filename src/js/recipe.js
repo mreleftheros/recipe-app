@@ -3,15 +3,16 @@ import ui from "./ui";
 class Recipe {
   constructor() {
     this.base = "https://www.themealdb.com/api/json/v1/1/";
+    this.params = "search.php?s=";
   }
-  async find(e) {
+  async search(e) {
     if (e.target.value === "") {  // check
       return ui.resetSearchForm();
     } 
     
     // check if event type is input event
     if (e.type === "input") {
-      const url = this.base + "search.php?s=" + e.target.value;
+      const url = this.base + this.params + e.target.value;
       const res = await fetch(url);
       const data = await res.json();
 
@@ -22,7 +23,7 @@ class Recipe {
     if (e.type === "submit") {
       e.preventDefault();
 
-      const url = this.base + "search.php?s=" + e.currentTarget.searchInput.value;
+      const url = this.base + this.params + e.currentTarget.searchInput.value;
       const res = await fetch(url);
       const data = await res.json();
       
@@ -30,12 +31,21 @@ class Recipe {
     }
 
     // else e.target is the li element in recommended list which was clicked
-    if (e.target.tagName === "LI") {
-      const url = this.base + "search.php?s=" + e.target.innerText;
+    if (e.target.tagName === "LI" && e.target.className.includes("recommended-list")) {
+      const url = this.base + this.params+ e.target.innerText;
       const res = await fetch(url);
       const data = await res.json();
-
+      
       return ui.updateRecipesList(data.meals);
+    }
+
+    // else e.target is the li element in recommended list which was clicked
+    if (e.target.tagName === "LI" && e.target.className.includes("recipes-list")) {
+      const url = this.base + this.params+ e.target.innerText;
+      const res = await fetch(url);
+      const data = await res.json();
+      
+      return ui.createPopup();
     }
   }
 }

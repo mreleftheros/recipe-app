@@ -12,9 +12,9 @@ class UI {
   init() {
     this.searchInput.addEventListener("focus", e => this.toggleForm(e));
     this.searchInput.addEventListener("blur", e => this.toggleForm(e));
-    this.searchInput.addEventListener("input", e => recipe.find(e));
-    this.searchForm.addEventListener("submit", e => recipe.find(e));
-    this.recommendedList.addEventListener("click", e => recipe.find(e));
+    this.searchInput.addEventListener("input", e => recipe.search(e));
+    this.searchForm.addEventListener("submit", e => recipe.search(e));
+    this.recommendedList.addEventListener("click", e => recipe.search(e));
     this.recipesList.addEventListener("click", e => this.handleRecipeClick(e));
   }
   toggleForm(e) {
@@ -103,7 +103,9 @@ class UI {
       this.toggleIcon(e, id, imgSrc);
     }
     else if (e.target.tagName === "LI") {
-      console.log("hey")
+      const str = e.target.lastElementChild.firstElementChild.innerText;
+
+      return recipe.search(e);
     }
   }
   toggleIcon(e, id, imgSrc) {
@@ -142,6 +144,9 @@ class UI {
 
     this.favoritesList.appendChild(fragment);
   }
+  // createPopup(id) {
+
+  // }
 }
 
 export default new UI();
