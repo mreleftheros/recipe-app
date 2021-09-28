@@ -41,11 +41,12 @@ class Recipe {
 
     // else e.target is the li element in recommended list which was clicked
     if (e.target.tagName === "LI" && e.target.className.includes("recipes-list")) {
-      const url = this.base + this.params+ e.target.innerText;
+      const str = e.target.lastElementChild.firstElementChild.innerText;
+      const url = this.base + this.params + str;
       const res = await fetch(url);
       const data = await res.json();
       
-      return ui.createPopup(data.meals);
+      return ui.createPopup(data.meals[0]);
     }
   }
 }

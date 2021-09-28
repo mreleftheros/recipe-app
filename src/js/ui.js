@@ -103,9 +103,7 @@ class UI {
       this.toggleIcon(e, id, imgSrc);
     }
     else if (e.target.tagName === "LI") {
-      const str = e.target.lastElementChild.firstElementChild.innerText;
-
-      return recipe.search(str);
+      return recipe.search(e);
     }
   }
   toggleIcon(e, id, imgSrc) {
