@@ -45,7 +45,7 @@ class Recipe {
       const res = await fetch(url);
       const data = await res.json();
       
-      return ui.createPopup();
+      return ui.createPopup(data.meals);
     }
   }
 }

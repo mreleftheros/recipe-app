@@ -105,7 +105,7 @@ class UI {
     else if (e.target.tagName === "LI") {
       const str = e.target.lastElementChild.firstElementChild.innerText;
 
-      return recipe.search(e);
+      return recipe.search(str);
     }
   }
   toggleIcon(e, id, imgSrc) {
@@ -144,9 +144,9 @@ class UI {
 
     this.favoritesList.appendChild(fragment);
   }
-  // createPopup(id) {
-
-  // }
+  createPopup(meal) {
+    console.log(meal)
+  }
 }
 
 export default new UI();
